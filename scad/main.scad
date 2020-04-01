@@ -24,12 +24,14 @@
 
 include <BOSL/constants.scad>
 use <BOSL/transforms.scad>
+use <BOSL/shapes.scad>
 
 include <rear_frame.scad>
 include <side_cover.scad>
 include <top_bracket.scad>
 include <mudguard.scad>
 include <rack.scad>
+include <m3insert.scad>
 
 // Rendering quality
 $fn = 50;
@@ -63,3 +65,9 @@ rotate([0,0,0]) {
     srr = (show_rack_right == "Yes") ? true:false;
     render_rack(srs, srl, srr);
 }
+
+// M3 insert test
+// move([0,0,0]) m3insert();
+// move([10,0,0]) m3insert();
+// move([0,10,0]) m3insert();
+// move([10,10,0]) m3insert();

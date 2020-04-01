@@ -26,8 +26,6 @@ include <BOSL/constants.scad>
 use <BOSL/shapes.scad>
 use <BOSL/transforms.scad>
 
-include <brake_caliper.scad>
-
 module side_arm()
 {
     difference() {
