@@ -1,0 +1,5 @@
+# No rendered objects in this directory
+*.stl
+*.3mf
+*.png
+*.jpg
