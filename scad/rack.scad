@@ -44,52 +44,67 @@ module rack_surface_attachment_sockets(surface_height)
         move([-83,-58,surface_height]) cyl(h=16, d=3.2);
         move([+45,-58,surface_height]) cyl(h=16, d=3.2);
 
-        move([-83,58,surface_height - 7]) cyl(h=4, d=6.2);
-        move([+75,58,surface_height - 7]) cyl(h=4, d=6.2);
-        move([-83,-58,surface_height - 7]) cyl(h=4, d=6.2);
-        move([+45,-58,surface_height - 7]) cyl(h=4, d=6.2);
+        move([-83,58,surface_height + 5]) cyl(h=4, d=6.2);
+        move([+75,58,surface_height + 5]) cyl(h=4, d=6.2);
+        move([-83,-58,surface_height + 5]) cyl(h=4, d=6.2);
+        move([+45,-58,surface_height + 5]) cyl(h=4, d=6.2);
 }
 
 module rack_surface()
 {
     // Rack surface (note 200x250 is max bed size on the prusa i3)
-    difference() {
-        hi = 150;
-        move([-10,0,hi]) cuboid([235,142,12], fillet=10, edges=EDGES_Z_ALL);
-        move([90,-12,hi]) cuboid([100,55,14], fillet=10, edges=EDGES_Z_ALL);
-        move([110,-50,hi]) cuboid([100,60,14], fillet=10, edges=EDGES_Z_ALL);
-
-        // Fillet the cut corners
-        move([107.5,15,hi]) interior_fillet(l=16, r=10, orient=ORIENT_Z_90);
-        move([60.25,-71,hi]) interior_fillet(l=16, r=10, orient=ORIENT_Z_90);
-        move([60.25,-39.5,hi]) interior_fillet(l=16, r=10, orient=ORIENT_Z_180);
-
-        // Chamfer the edges of the surface
-        move([-10,-80 + 5,hi + 7]) rotate([45,0,0]) cuboid([235,12,12]); // Left side
-        move([-10,80 - 5,hi + 7]) rotate([-45,0,0]) cuboid([235,12,12]); // Right side
-        move([-142 + 10,0,hi + 7]) rotate([0,45,0]) cuboid([12,142,12]); // Back
-        move([-132,-67,hi + 7]) rotate([0,45,45]) cuboid([12,40,12]); // Back left corner
-        move([-132,67,hi + 7]) rotate([0,45,-45]) cuboid([12,40,12]); // Back right corner
-        move([111.5,0,hi + 7]) rotate([0,145,0]) cuboid([12,142,12]); // Front
-        move([111.5,67,hi + 7]) rotate([0,45,45]) cuboid([12,40,12]); // Front left corner
-        move([112.5,20,hi + 7]) rotate([0,45,-45]) cuboid([12,40,12]); // Front right corner
-        move([64,-50,hi + 7]) rotate([0,145,0]) cuboid([12,50,12]); // Front (short)
-        move([55,62 - 100,hi + 10]) rotate([0,45,45]) cuboid([12,20,12]); // Front left corner
-        move([55,29- 100,hi + 10]) rotate([0,45,-45]) cuboid([12,20,12]); // Front right corner
     
-        // Cutouts
-        move([-10,40,hi]) cuboid([210,20,16], fillet=5, edges=EDGES_Z_ALL);
-        move([-45,-40,hi]) cuboid([140,20,16], fillet=5, edges=EDGES_Z_ALL);
-        move([-45,0,hi]) cuboid([140,20,16], fillet=5, edges=EDGES_Z_ALL);
+    hi3 = 150;
+    yoffset = -12;
 
-        // Cutouts (add stepped edge decoration)
-        hi2=138 + 14;
-        ch=2;
-        move([-10,40,hi2 - ch]) cuboid([210+ch,20+ch,16], fillet=5, edges=EDGES_Z_ALL);
-        move([-45,-40,hi2 - ch]) cuboid([140+ch,20+ch,16], fillet=5, edges=EDGES_Z_ALL);
-        move([-45,0,hi2 - ch]) cuboid([140+ch,20+ch,16], fillet=5, edges=EDGES_Z_ALL);
+    difference() {
+        move([yoffset,0,hi3]) cuboid([240,190,12], chamfer = 4, edges=EDGES_TOP+EDGES_Z_ALL);
 
-        rack_surface_attachment_sockets(hi);
+        move([yoffset + 87,-12,hi3]) cuboid([70,55,14]);
+        move([yoffset + 87,-12,hi3+9]) cuboid([70+8,55+8,14], chamfer = 4, edges=EDGES_BOTTOM+EDGES_Z_ALL);
+        
+        move([yoffset + 102,-67,hi3]) cuboid([60,70,14]);
+        move([yoffset + 102,-67,hi3+9]) cuboid([60+8,70+8,14], chamfer = 4, edges=EDGES_BOTTOM+EDGES_Z_ALL);
+
+        rack_surface_attachment_sockets(hi3);
+
+        // Trim edges
+        move([yoffset + 120.5,10,hi3]) rotate([0,0,45]) cuboid([14,14,14]);
+        move([yoffset + 73,-100,hi3]) rotate([0,0,45]) cuboid([14,14,14]);
+        move([yoffset + 73,-34,hi3]) rotate([0,0,45]) cuboid([14,14,14]);
+
+        move([yoffset + 123, 10+3,hi3+5]) rotate([45,0,45]) cuboid([16,18,14]);
+        move([yoffset + 74,-35,hi3+5]) rotate([0,45,45]) cuboid([18,18,14]);
+        move([yoffset + 73,-100,hi3+5]) rotate([45,0,45]) cuboid([18,18,14]);
+
+        // Cut outs
+        move([yoffset,90 - 12,hi3]) cuboid([240 - 24,12,14]);
+        move([yoffset - 25,-90 + 12,hi3]) cuboid([190 - 24,12,14]);
+
+        move([yoffset,90 - 24 - 24 - 6,hi3]) cuboid([240 - 24,12,14]);
+        move([yoffset - 25 - 10,-90 + 24 + 24 + 6,hi3]) cuboid([190 - 44,12,14]);
+
+        move([yoffset + 1.5 + 3,0,hi3]) cuboid([(190 - 44 - 12) / 2,28,14]);
+        move([yoffset + 1.5 - ((190-44) / 2) - 3,0,hi3]) cuboid([(190 - 44 - 12) / 2,38,14]);
+
+        move([yoffset - 7,-90 + 24 + 9,hi3]) cuboid([90,12,14]);
+        move([yoffset -7,90 - 24 - 9,hi3]) cuboid([90,12,14]);
+
+        // Chamfer cutouts
+        move([0,0,9]) {
+            chm = 4;
+            move([yoffset,90 - 12,hi3]) cuboid([240 - 24 + chm,12 + chm,14], chamfer = chm);
+            move([yoffset - 25,-90 + 12,hi3]) cuboid([190 - 24 + chm,12 + chm,14], chamfer = chm);
+
+            move([yoffset,90 - 24 - 24 - 6,hi3]) cuboid([240 - 24 + chm,12 + chm,14], chamfer = chm);
+            move([yoffset - 25 - 10,-90 + 24 + 24 + 6,hi3]) cuboid([190 - 44 + chm,12 + chm,14], chamfer = chm);
+
+            move([yoffset + 1.5 + 3,0,hi3]) cuboid([((190 - 44 - 12) / 2) + chm,28 + chm,14], chamfer = chm);
+            move([yoffset + 1.5 - ((190-44) / 2) - 3,0,hi3]) cuboid([((190 - 44 - 12) / 2) + chm,38 + chm,14], chamfer = chm);
+
+            move([yoffset - 7,-90 + 24 + 9,hi3]) cuboid([90 + chm,12 + chm,14], chamfer = chm);
+            move([yoffset -7,90 - 24 - 9,hi3]) cuboid([90 + chm,12 + chm,14], chamfer = chm);
+        }
     }
 }
 
@@ -206,9 +221,6 @@ module render_rack(show_surface, show_left, show_right)
     color("orange") {
         if (show_left) rack_frame_left();
         if (show_right) rack_frame_right();
-    }
-
-    color("red") {
         if (show_surface) move([0,0,0]) rack_surface();
     }
 }
