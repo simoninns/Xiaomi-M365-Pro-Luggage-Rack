@@ -65,9 +65,3 @@ rotate([0,0,0]) {
     srr = (show_rack_right == "Yes") ? true:false;
     render_rack(srs, srl, srr);
 }
-
-// M3 insert test
-// move([0,0,0]) m3insert();
-// move([10,0,0]) m3insert();
-// move([0,10,0]) m3insert();
-// move([10,10,0]) m3insert();

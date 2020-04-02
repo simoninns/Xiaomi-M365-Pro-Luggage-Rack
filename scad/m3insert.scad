@@ -28,10 +28,8 @@ use <BOSL/transforms.scad>
 
 module m3insert()
 {
-    difference() {
-        move([0,0,-3.5]) cuboid([10,10,12]);
-        move([0,0,5.5 - 6]) cyl(h = 6.1, d = 4.5);
-        move([0,0,-6]) cyl(h = 5, d = 3);
-        move([0,0,3]) cyl(h = 3, d = 5.5, chamfer = 1);
-    }
+    //move([0,0,-6]) cuboid([10,10,12]);
+    move([0,0,-3]) cyl(h = 6.1, d = 4.5); // Space for insert
+    move([0,0,-8.5]) cyl(h = 5, d = 3); // Extra space at bottom for screw + melt
+    move([0,0,-0.5]) cyl(h = 3, d = 5.5, chamfer = 1); // Chamfer top of insert
 }
