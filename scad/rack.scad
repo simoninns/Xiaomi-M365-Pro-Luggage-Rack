@@ -175,8 +175,8 @@ module rack_frame_right()
 
         // Right side stay decoration
         move([0,-7.5,0]) {
-            rotate([0,-30,0]) move([0,-59,80]) cuboid([14 - 8, 2,160], chamfer = 0.5); // Back
-            move([45,0,21]) rotate([0,0,0]) move([0,-59,65]) cuboid([14 - 8, 2,140], chamfer = 0.5); // Front
+            rotate([0,-30,0]) move([0,-59,98]) cuboid([14 - 8, 2,160], chamfer = 0.5); // Back
+            move([45,0,22]) rotate([0,0,0]) move([0,-59,65]) cuboid([14 - 8, 2,140], chamfer = 0.5); // Front
         }
 
         // Cross bar decoration
