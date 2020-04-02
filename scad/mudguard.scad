@@ -26,10 +26,13 @@ include <BOSL/constants.scad>
 use <BOSL/shapes.scad>
 use <BOSL/transforms.scad>
 
+// Note: The position of the mudguard is approximate in the model
+// needs to be more accurately measured...
+
 module handlebar_clip()
 {
     // Centre on the Wheel shaft
-    move([70 - 120,50,-52]) {
+    move([70 - 120,60,-52]) {
         move([-34,3,0]) rotate([0,0,-25]) {
             difference() {
                 rotate([90,0,0]) slot([0,0,-80], [24-17,0,-80], d1=17, d2=17, h=12);
@@ -44,7 +47,7 @@ module mudguard()
 {
     // Centre on the Wheel shaft
     move([0,0,-7]) {
-        diam = 254;
+        diam = 274;
         difference() {
             move([-35 - 65,0,-45]) cyl(h=54, d=diam, chamfer = 10);
             move([-35 - 65,0,-45]) cyl(h=55, d=diam - 4, chamfer = 10);
@@ -55,7 +58,7 @@ module mudguard()
 
 module render_mudguard()
 {
-    rotate([90,0,0]) move([100,3,104 / 2]) {
+    rotate([90,0,0]) move([100, 0,104 / 2]) {
         color("green") mudguard();
         color("cyan") handlebar_clip();
     }

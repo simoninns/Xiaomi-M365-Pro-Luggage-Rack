@@ -29,11 +29,32 @@ use <BOSL/transforms.scad>
 include <side_cover.scad>
 include <m3insert.scad>
 
+module rack_surface_attachment_sockets(surface_height)
+{
+        // Attachment sockets (0.2mm larger than the posts)
+        // Posts are 7mm high
+        move([-83,58,surface_height - 11.5 + 8]) cuboid([11.2, 12.2, 9]);
+        move([+75,58,surface_height - 11.5 + 8]) cuboid([11.2, 12.2, 9]);
+        move([-83,-58,surface_height - 11.5 + 8]) cuboid([11.2, 12.2, 9]);
+        move([+45,-58,surface_height - 11.5 + 8]) cuboid([11.2, 12.2, 9]);
+
+        // Attachment screw holes
+        move([-83,58,surface_height]) cyl(h=16, d=3.2);
+        move([+75,58,surface_height]) cyl(h=16, d=3.2);
+        move([-83,-58,surface_height]) cyl(h=16, d=3.2);
+        move([+45,-58,surface_height]) cyl(h=16, d=3.2);
+
+        move([-83,58,surface_height - 7]) cyl(h=4, d=6.2);
+        move([+75,58,surface_height - 7]) cyl(h=4, d=6.2);
+        move([-83,-58,surface_height - 7]) cyl(h=4, d=6.2);
+        move([+45,-58,surface_height - 7]) cyl(h=4, d=6.2);
+}
+
 module rack_surface()
 {
     // Rack surface (note 200x250 is max bed size on the prusa i3)
     difference() {
-        hi = 138;
+        hi = 150;
         move([-10,0,hi]) cuboid([235,142,12], fillet=10, edges=EDGES_Z_ALL);
         move([90,-12,hi]) cuboid([100,55,14], fillet=10, edges=EDGES_Z_ALL);
         move([110,-50,hi]) cuboid([100,60,14], fillet=10, edges=EDGES_Z_ALL);
@@ -68,24 +89,7 @@ module rack_surface()
         move([-45,-40,hi2 - ch]) cuboid([140+ch,20+ch,16], fillet=5, edges=EDGES_Z_ALL);
         move([-45,0,hi2 - ch]) cuboid([140+ch,20+ch,16], fillet=5, edges=EDGES_Z_ALL);
 
-        // Attachment sockets (0.1mm larger than the posts)
-        // Posts are 7mm high
-        ph = 7;
-        move([-76.5,58,hi - 11.5 + ph]) cuboid([11.1, 12.1, 9]);
-        move([+75,58,hi - 11.5 + ph]) cuboid([11.1, 12.1, 9]);
-        move([-76.5,-58,hi - 11.5 + ph]) cuboid([11.1, 12.1, 9]);
-        move([+45,-58,hi - 11.5 + ph]) cuboid([11.1, 12.1, 9]);
-
-        // Attachment screw holes
-        move([-76.5,58,hi]) cyl(h=16, d=3.2);
-        move([+75,58,hi]) cyl(h=16, d=3.2);
-        move([-76.5,-58,hi]) cyl(h=16, d=3.2);
-        move([+45,-58,hi]) cyl(h=16, d=3.2);
-
-        move([-76.5,58,146 - 3]) cyl(h=4, d=6.2);
-        move([+75,58,146 - 3]) cyl(h=4, d=6.2);
-        move([-76.5,-58,146 - 3]) cyl(h=4, d=6.2);
-        move([+45,-58,146 - 3]) cyl(h=4, d=6.2);
+        rack_surface_attachment_sockets(hi);
     }
 }
 
@@ -102,12 +106,12 @@ module rack_frame_left()
             // Left side stays
             difference() {
                 union() {
-                    rotate([0,-30,0]) move([0,+59,80]) cuboid([14, 14,160], fillet=3, edges=EDGE_BK_LF+EDGE_BK_RT); // Back
-                    move([75,0,5]) rotate([0,0,0]) move([0,+59,65]) cuboid([14, 14,140], fillet=3, edges=EDGE_BK_LF+EDGE_BK_RT); // Front
+                    rotate([0,-30,0]) move([0,+59,80]) cuboid([14, 14,182], fillet=3, edges=EDGE_BK_LF+EDGE_BK_RT); // Back
+                    move([75,0,5]) rotate([0,0,0]) move([0,+59,69]) cuboid([14, 14,140], fillet=3, edges=EDGE_BK_LF+EDGE_BK_RT); // Front
                 }
 
                 // Slice top edge flat
-                move([0,59,141]) cuboid([190, 16,18]);
+                move([0,60,153]) cuboid([220, 18,18]);
             }
             
             // Cross bar
@@ -117,8 +121,8 @@ module rack_frame_left()
             rotate([180,0,0]) render_side_cover();
 
             // Attachment posts
-            move([-76.5,58,141 - 5.5]) cuboid([11, 12, 7]);
-            move([+75,58,141 - 5.5]) cuboid([11, 12, 7]);
+            move([-83,58,153 - 5.5]) cuboid([11, 12, 7]);
+            move([+75,58,153 - 5.5]) cuboid([11, 12, 7]);
         }
 
         // Ensure clearance for wheel nut
@@ -139,9 +143,12 @@ module rack_frame_left()
         move([40 + offset1,0,0]) crossbar_deco();  
 
         // M3 Inserts for attachment posts
-        move([-76.5,58,139]) m3insert();
-        move([75,58,139]) m3insert();    
+        move([-83,58,151]) m3insert();
+        move([75,58,151]) m3insert();    
     }
+
+     
+    
 }
 
 module rack_frame_right()
@@ -151,12 +158,12 @@ module rack_frame_right()
             // Right side stays
             difference() {
                 union() {
-                    rotate([0,-30,0]) move([0,-59,80]) cuboid([14, 14,160], fillet=3, edges=EDGE_FR_LF+EDGE_FR_RT); // Back
-                    move([45,0,5]) rotate([0,0,0]) move([0,-59,70]) cuboid([14, 14,120], fillet=3, edges=EDGE_FR_LF+EDGE_FR_RT); // Front
+                    rotate([0,-30,0]) move([0,-59,80]) cuboid([14, 14,182], fillet=3, edges=EDGE_FR_LF+EDGE_FR_RT); // Back
+                    move([45,0,5]) rotate([0,0,0]) move([0,-59,69]) cuboid([14, 14,140], fillet=3, edges=EDGE_FR_LF+EDGE_FR_RT); // Front
                 }
 
                 // Slice top edge flat
-                move([0,-59,141]) cuboid([190, 16,18]);
+                move([0,-60,153]) cuboid([220, 18,18]);
             }
             
             // Crossbar
@@ -166,8 +173,8 @@ module rack_frame_right()
             render_side_cover();
 
             // Attachment posts
-            move([-76.5,-58,141 - 5.5]) cuboid([11, 12, 7]);
-            move([+45,-58,141 - 5.5]) cuboid([11, 12, 7]);
+            move([-83,-58,153 - 5.5]) cuboid([11, 12, 7]);
+            move([+45,-58,153 - 5.5]) cuboid([11, 12, 7]);
         }
 
         // Ensure clearance for wheel nut
@@ -176,7 +183,7 @@ module rack_frame_right()
         // Right side stay decoration
         move([0,-7.5,0]) {
             rotate([0,-30,0]) move([0,-59,98]) cuboid([14 - 8, 2,160], chamfer = 0.5); // Back
-            move([45,0,22]) rotate([0,0,0]) move([0,-59,65]) cuboid([14 - 8, 2,140], chamfer = 0.5); // Front
+            move([45,0,21]) rotate([0,0,0]) move([0,-59,65]) cuboid([14 - 8, 2,140], chamfer = 0.5); // Front
         }
 
         // Cross bar decoration
@@ -189,8 +196,8 @@ module rack_frame_right()
         }
 
         // M3 Inserts for attachment posts
-        move([-76.5,-58,139]) m3insert();
-        move([45,-58,139]) m3insert();
+        move([-83,-58,151]) m3insert();
+        move([45,-58,151]) m3insert();
     }  
 }
 
@@ -199,6 +206,9 @@ module render_rack(show_surface, show_left, show_right)
     color("orange") {
         if (show_left) rack_frame_left();
         if (show_right) rack_frame_right();
+    }
+
+    color("red") {
         if (show_surface) move([0,0,0]) rack_surface();
     }
 }
