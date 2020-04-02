@@ -136,8 +136,8 @@ module rack_frame_left()
             rotate([180,0,0]) render_side_cover();
 
             // Attachment posts
-            move([-83,58,153 - 5.5]) cuboid([11, 12, 7]);
-            move([+75,58,153 - 5.5]) cuboid([11, 12, 7]);
+            move([-83,58,153 - 5.5]) cuboid([11, 12, 7], chamfer=0.5, edges=EDGES_TOP+EDGE_FR_LF+EDGE_BK_LF+EDGES_TOP+EDGE_FR_RT+EDGE_BK_RT);
+            move([+75,58,153 - 5.5]) cuboid([11, 12, 7], chamfer=0.5, edges=EDGES_TOP+EDGE_FR_LF+EDGE_BK_LF+EDGES_TOP+EDGE_FR_RT+EDGE_BK_RT);
         }
 
         // Ensure clearance for wheel nut
@@ -174,7 +174,7 @@ module rack_frame_right()
             difference() {
                 union() {
                     rotate([0,-30,0]) move([0,-59,80]) cuboid([14, 14,182], fillet=3, edges=EDGE_FR_LF+EDGE_FR_RT); // Back
-                    move([45,0,5]) rotate([0,0,0]) move([0,-59,69]) cuboid([14, 14,140], fillet=3, edges=EDGE_FR_LF+EDGE_FR_RT); // Front
+                    move([45,0,13]) rotate([0,0,0]) move([0,-59,69]) cuboid([14, 14,140], fillet=3, edges=EDGE_FR_LF+EDGE_FR_RT); // Front
                 }
 
                 // Slice top edge flat
@@ -188,8 +188,8 @@ module rack_frame_right()
             render_side_cover();
 
             // Attachment posts
-            move([-83,-58,153 - 5.5]) cuboid([11, 12, 7]);
-            move([+45,-58,153 - 5.5]) cuboid([11, 12, 7]);
+            move([-83,-58,153 - 5.5]) cuboid([11, 12, 7], chamfer=0.5, edges=EDGES_TOP+EDGE_FR_LF+EDGE_BK_LF+EDGES_TOP+EDGE_FR_RT+EDGE_BK_RT);
+            move([+45,-58,153 - 5.5]) cuboid([11, 12, 7], chamfer=0.5, edges=EDGES_TOP+EDGE_FR_LF+EDGE_BK_LF+EDGES_TOP+EDGE_FR_RT+EDGE_BK_RT);
         }
 
         // Ensure clearance for wheel nut
