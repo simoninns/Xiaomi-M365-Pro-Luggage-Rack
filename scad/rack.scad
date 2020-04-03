@@ -60,8 +60,8 @@ module rack_surface()
     difference() {
         move([yoffset,0,hi3]) cuboid([240,190,12], chamfer = 4, edges=EDGES_TOP+EDGES_Z_ALL);
 
-        move([yoffset + 87,-12,hi3]) cuboid([70,55,14]);
-        move([yoffset + 87,-12,hi3+9]) cuboid([70+8,55+8,14], chamfer = 4, edges=EDGES_BOTTOM+EDGES_Z_ALL);
+        move([yoffset + 87,-12,hi3]) cuboid([70,70,14]);
+        move([yoffset + 87,-12,hi3+9]) cuboid([70+8,70+8,14], chamfer = 4, edges=EDGES_BOTTOM+EDGES_Z_ALL);
         
         move([yoffset + 102,-67,hi3]) cuboid([60,70,14]);
         move([yoffset + 102,-67,hi3+9]) cuboid([60+8,70+8,14], chamfer = 4, edges=EDGES_BOTTOM+EDGES_Z_ALL);
@@ -69,45 +69,48 @@ module rack_surface()
         rack_surface_attachment_sockets(hi3);
 
         // Trim edges
-        move([yoffset + 120.5,10,hi3]) rotate([0,0,45]) cuboid([14,14,14]);
-        move([yoffset + 73,-100,hi3]) rotate([0,0,45]) cuboid([14,14,14]);
-        move([yoffset + 73,-34,hi3]) rotate([0,0,45]) cuboid([14,14,14]);
+        move([yoffset + 120.5,17,hi3]) rotate([0,0,45]) cuboid([14,14,14]);
+        move([yoffset + 125, 19+3,hi3+5]) rotate([45,0,45]) cuboid([16,18,14]);
 
-        move([yoffset + 123, 10+3,hi3+5]) rotate([45,0,45]) cuboid([16,18,14]);
-        move([yoffset + 74,-35,hi3+5]) rotate([0,45,45]) cuboid([18,18,14]);
+        move([yoffset + 73,-100,hi3]) rotate([0,0,45]) cuboid([14,14,14]);
         move([yoffset + 73,-100,hi3+5]) rotate([45,0,45]) cuboid([18,18,14]);
 
+        move([yoffset + 73,-42,hi3]) rotate([0,0,45]) cuboid([14,14,14]);
+        move([yoffset + 74,-43,hi3+5]) rotate([0,45,45]) cuboid([18,18,14]);
+
         // Cut outs
-        move([yoffset,90 - 12,hi3]) cuboid([240 - 24,12,14]);
-        move([yoffset - 25,-90 + 12,hi3]) cuboid([190 - 24,12,14]);
+        move([yoffset,90 - 14,hi3]) cuboid([240 - 24,14,14]); // Left
+        move([yoffset - 25,-90 + 14,hi3]) cuboid([190 - 24,14,14]); // Left drop
 
-        move([yoffset,90 - 24 - 24 - 6,hi3]) cuboid([240 - 24,12,14]);
-        move([yoffset - 25 - 10,-90 + 24 + 24 + 6,hi3]) cuboid([190 - 44,12,14]);
+        move([yoffset,90,hi3+4]) cuboid([240 - 24,15,8]); // Right
+        move([yoffset - 25,-90,hi3+4]) cuboid([190 - 24,15,8]); // Right drop
 
-        move([yoffset + 1.5 + 3,0,hi3]) cuboid([(190 - 44 - 12) / 2,28,14]);
-        move([yoffset + 1.5 - ((190-44) / 2) - 3,0,hi3]) cuboid([(190 - 44 - 12) / 2,38,14]);
+        move([yoffset - 34 - 40,0,hi3]) cuboid([68,95,14]);
+        move([yoffset - 34 + 40,0,hi3]) cuboid([68,95,14]);
 
-        move([yoffset - 7,-90 + 24 + 9,hi3]) cuboid([90,12,14]);
-        move([yoffset -7,90 - 24 - 9,hi3]) cuboid([90,12,14]);
+        move([yoffset + 80,40.5,hi3]) cuboid([56,14,14]); // Left
 
         // Chamfer cutouts
         move([0,0,9]) {
             chm = 4;
-            move([yoffset,90 - 12,hi3]) cuboid([240 - 24 + chm,12 + chm,14], chamfer = chm);
-            move([yoffset - 25,-90 + 12,hi3]) cuboid([190 - 24 + chm,12 + chm,14], chamfer = chm);
 
-            move([yoffset,90 - 24 - 24 - 6,hi3]) cuboid([240 - 24 + chm,12 + chm,14], chamfer = chm);
-            move([yoffset - 25 - 10,-90 + 24 + 24 + 6,hi3]) cuboid([190 - 44 + chm,12 + chm,14], chamfer = chm);
+            move([yoffset,90 - 14 + 17,hi3]) cuboid([240 - 24 + chm,48 + chm,14], chamfer = chm, trimcorners = false); // Left
+            move([yoffset - 25,-90 + 14 - 17,hi3]) cuboid([190 - 24 + chm,48 + chm,14], chamfer = chm, trimcorners = false); // Right
 
-            move([yoffset + 1.5 + 3,0,hi3]) cuboid([((190 - 44 - 12) / 2) + chm,28 + chm,14], chamfer = chm);
-            move([yoffset + 1.5 - ((190-44) / 2) - 3,0,hi3]) cuboid([((190 - 44 - 12) / 2) + chm,38 + chm,14], chamfer = chm);
+            move([yoffset - 34 - 40,0,hi3]) cuboid([68 + chm,95 + chm,14], chamfer = chm, trimcorners = false);
+            move([yoffset - 34 + 40,0,hi3]) cuboid([68 + chm,95 + chm,14], chamfer = chm, trimcorners = false);
 
-            move([yoffset - 7,-90 + 24 + 9,hi3]) cuboid([90 + chm,12 + chm,14], chamfer = chm);
-            move([yoffset -7,90 - 24 - 9,hi3]) cuboid([90 + chm,12 + chm,14], chamfer = chm);
+            move([yoffset + 80,40.5,hi3]) cuboid([56 + chm,14 + chm,14], chamfer = chm, trimcorners = false); // Left
+
+            move([yoffset,90 - 14 + 17 + 24,hi3 - 4]) cuboid([240 - 24 + chm,48 + chm,14], chamfer = chm, trimcorners = false); // Left
+            move([yoffset - 25,-90 + 14 - 17 - 24,hi3 - 4]) cuboid([190 - 24 + chm,48 + chm,14], chamfer = chm, trimcorners = false); // Right
+
+            move([yoffset,90 - 14 + 5,hi3 - 4]) cuboid([240 - 28 + chm,8 + chm,14], chamfer = chm, trimcorners = false, edges=EDGES_X_BK); // Left
+            move([yoffset - 25,-90 + 14 - 5,hi3 - 4]) cuboid([190 - 28 + chm,8 + chm,14], chamfer = chm, trimcorners = false, edges=EDGES_X_FR); // Right
         }
     }
 }
-
+    
 module crossbar_deco()
 {
     move([8,59,100]) cuboid([12,18,8]);
