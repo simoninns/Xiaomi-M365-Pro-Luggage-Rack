@@ -53,7 +53,7 @@ module hook()
             move([0,0,23.5 + 4]) slot([0,0,0], [7,0,0], d1=15, d2=13.5, h=1);
         }
 
-        move([-2,0,14 + 4]) cyl(h=32, r=2.6);
+        move([-2,0,14]) cyl(h=34, r=2.6);
         move([-2,0,20 + 4]) metric_nut(size=5.3, hole=false);
     }
 
