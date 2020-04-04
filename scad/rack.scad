@@ -53,12 +53,12 @@ module rack_surface_attachment_sockets(surface_height)
 module rack_surface()
 {
     // Rack surface (note 200x250 is max bed size on the prusa i3)
-    
     hi3 = 150;
     yoffset = -12;
 
     difference() {
-        move([yoffset,0,hi3]) cuboid([240,190,12], chamfer = 4, edges=EDGES_TOP+EDGES_Z_ALL);
+        // Main surface shape
+        move([yoffset + 8,0,hi3]) cuboid([224,178,12], chamfer = 4, edges=EDGES_TOP+EDGES_Z_ALL);
 
         move([yoffset + 87,-12,hi3]) cuboid([70,70,14]);
         move([yoffset + 87,-12,hi3+9]) cuboid([70+8,70+8,14], chamfer = 4, edges=EDGES_BOTTOM+EDGES_Z_ALL);
@@ -66,47 +66,56 @@ module rack_surface()
         move([yoffset + 102,-67,hi3]) cuboid([60,70,14]);
         move([yoffset + 102,-67,hi3+9]) cuboid([60+8,70+8,14], chamfer = 4, edges=EDGES_BOTTOM+EDGES_Z_ALL);
 
+        move([yoffset + 8,83,hi3+4]) cuboid([224 - 24,28,8]); // Left drop
+        move([yoffset -16,-83,hi3+4]) cuboid([176 - 24,28,8]); // Right drop
+
         rack_surface_attachment_sockets(hi3);
 
         // Trim edges
         move([yoffset + 120.5,17,hi3]) rotate([0,0,45]) cuboid([14,14,14]);
         move([yoffset + 125, 19+3,hi3+5]) rotate([45,0,45]) cuboid([16,18,14]);
 
-        move([yoffset + 73,-100,hi3]) rotate([0,0,45]) cuboid([14,14,14]);
-        move([yoffset + 73,-100,hi3+5]) rotate([45,0,45]) cuboid([18,18,14]);
+        move([yoffset + 73,-95,hi3]) rotate([0,0,45]) cuboid([14,14,14]);
+        move([yoffset + 73,-95,hi3+5]) rotate([45,0,45]) cuboid([18,18,14]);
 
         move([yoffset + 73,-42,hi3]) rotate([0,0,45]) cuboid([14,14,14]);
         move([yoffset + 74,-43,hi3+5]) rotate([0,45,45]) cuboid([18,18,14]);
 
         // Cut outs
-        move([yoffset,90 - 14,hi3]) cuboid([240 - 24,14,14]); // Left
-        move([yoffset - 25,-90 + 14,hi3]) cuboid([190 - 24,14,14]); // Left drop
+        move([yoffset + 44,74,hi3]) cuboid([128,10,14]); // Left hook spacer front
+        move([yoffset - 62,74,hi3]) cuboid([60,10,14]); // Left hook spacer back
 
-        move([yoffset,90,hi3+4]) cuboid([240 - 24,15,8]); // Right
-        move([yoffset - 25,-90,hi3+4]) cuboid([190 - 24,15,8]); // Right drop
+        move([yoffset + 20,-74,hi3]) cuboid([80,10,14]); // Right hook spacer front
+        move([yoffset - 62,-74,hi3]) cuboid([60,10,14]); // Right hook spacer back
 
-        move([yoffset - 34 - 40,0,hi3]) cuboid([68,95,14]);
-        move([yoffset - 34 + 40,0,hi3]) cuboid([68,95,14]);
+        move([yoffset + 10,26.75,hi3]) cuboid([60,41.5,14]); // Middle front left
+        move([yoffset + 10,-26.75,hi3]) cuboid([60,41.5,14]); // Middle front right
 
-        move([yoffset + 80,40.5,hi3]) cuboid([56,14,14]); // Left
+        move([yoffset - 62,41,hi3]) cuboid([60,13,14]); // Middle back left
+        move([yoffset - 62,0,hi3]) cuboid([60,45,14]); // Middle back
+        move([yoffset - 62,-41,hi3]) cuboid([60,13,14]); // Middle back right
+        
+        move([yoffset + 80,41,hi3]) cuboid([56,13,14]); // Front Left
 
         // Chamfer cutouts
         move([0,0,9]) {
             chm = 4;
 
-            move([yoffset,90 - 14 + 17,hi3]) cuboid([240 - 24 + chm,48 + chm,14], chamfer = chm, trimcorners = false); // Left
-            move([yoffset - 25,-90 + 14 - 17,hi3]) cuboid([190 - 24 + chm,48 + chm,14], chamfer = chm, trimcorners = false); // Right
+            move([yoffset + 8,83,hi3]) cuboid([224 - 24 + chm,28 + chm,14], chamfer = chm, trimcorners = false); // Left drop
+            move([yoffset -16,-83,hi3]) cuboid([176 - 24 + chm,28 + chm,14], chamfer = chm, trimcorners = false); // Right drop
 
-            move([yoffset - 34 - 40,0,hi3]) cuboid([68 + chm,95 + chm,14], chamfer = chm, trimcorners = false);
-            move([yoffset - 34 + 40,0,hi3]) cuboid([68 + chm,95 + chm,14], chamfer = chm, trimcorners = false);
 
-            move([yoffset + 80,40.5,hi3]) cuboid([56 + chm,14 + chm,14], chamfer = chm, trimcorners = false); // Left
+            move([yoffset + 10,26.75,hi3]) cuboid([60 + chm,41.5 + chm,14], chamfer = chm, trimcorners = false); // Middle front left
+            move([yoffset + 10,-26.75,hi3]) cuboid([60 + chm,41.5 + chm,14], chamfer = chm, trimcorners = false); // Middle front right
 
-            move([yoffset,90 - 14 + 17 + 24,hi3 - 4]) cuboid([240 - 24 + chm,48 + chm,14], chamfer = chm, trimcorners = false); // Left
-            move([yoffset - 25,-90 + 14 - 17 - 24,hi3 - 4]) cuboid([190 - 24 + chm,48 + chm,14], chamfer = chm, trimcorners = false); // Right
+            move([yoffset - 62,41,hi3]) cuboid([60 + chm,13 + chm,14], chamfer = chm, trimcorners = false); // Middle back left
+            move([yoffset - 62,0,hi3]) cuboid([60 + chm,45 + chm,14], chamfer = chm, trimcorners = false); // Middle back
+            move([yoffset - 62,-41,hi3]) cuboid([60 + chm,13 + chm,14], chamfer = chm, trimcorners = false); // Middle back right
+            
+            move([yoffset + 80,41,hi3]) cuboid([56 + chm,13 + chm,14], chamfer = chm, trimcorners = false); // Front Left
 
-            move([yoffset,90 - 14 + 5,hi3 - 4]) cuboid([240 - 28 + chm,8 + chm,14], chamfer = chm, trimcorners = false, edges=EDGES_X_BK); // Left
-            move([yoffset - 25,-90 + 14 - 5,hi3 - 4]) cuboid([190 - 28 + chm,8 + chm,14], chamfer = chm, trimcorners = false, edges=EDGES_X_FR); // Right
+            move([yoffset + 8,83 + 20,hi3 - 4]) cuboid([224 - 24,28 + chm,14], chamfer = chm / 2, trimcorners = false, edges = EDGE_BOT_FR); // Left drop
+            move([yoffset -16,-83 - 20,hi3 - 4]) cuboid([176 - 24,28 + chm,14], chamfer = chm / 2, trimcorners = false, edges = EDGE_BOT_BK); // Right drop
         }
     }
 }
