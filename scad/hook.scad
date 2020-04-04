@@ -41,26 +41,26 @@ module hook()
                 move([11,0,0.5]) cuboid([15,17,4]);
             }
 
-            move([0,0,3]) slot([0,0,0], [7,0,0], d1=15, d2=20, h=8);
-            move([0,0,8]) slot([0,0,0], [7,0,0], d1=20, d2=20, h=2);
+            move([0,0,3.5]) slot([0,0,0], [7,0,0], d1=15, d2=20, h=9);
+            move([0,0,10.5]) slot([0,0,0], [7,0,0], d1=20, d2=20, h=5);
 
             difference() {
-                move([0,0,13.5]) slot([0,0,0], [7,0,0], d1=20, d2=15, h=9);
-                move([11,0,13.5]) cuboid([15,20,9+4]);
+                move([0,0,13.5 + 4]) slot([0,0,0], [7,0,0], d1=20, d2=15, h=9);
+                move([11,0,13.5 + 4]) cuboid([15,20,9+4]);
             }
 
-            move([0,0,20.5]) slot([0,0,0], [7,0,0], d1=15, d2=15, h=5);
-            move([0,0,23.5]) slot([0,0,0], [7,0,0], d1=15, d2=13.5, h=1);
+            move([0,0,20.5 + 4]) slot([0,0,0], [7,0,0], d1=15, d2=15, h=5);
+            move([0,0,23.5 + 4]) slot([0,0,0], [7,0,0], d1=15, d2=13.5, h=1);
         }
 
-        move([-2,0,14]) cyl(h=32, r=2.6);
-        move([-2,0,20]) metric_nut(size=5.1, hole=false);
+        move([-2,0,14 + 4]) cyl(h=32, r=2.6);
+        move([-2,0,20 + 4]) metric_nut(size=5.3, hole=false);
     }
 
     difference() {
-        move([8.5,0,17.25]) rotate([180,0,0]) right_triangle([12, 18, 1.5], center=true);
+        move([8.5,0,17.25 + 4]) rotate([180,0,0]) right_triangle([12, 18, 1.5], center=true);
 
-        move([0,0,13.5]) {
+        move([0,0,13.5 + 4]) {
             difference() {
                 slot([0,0,0], [7,0,0], d1=30, d2=25, h=9.1);
                 slot([0,0,0], [7,0,0], d1=20, d2=15, h=9.1);
@@ -69,12 +69,26 @@ module hook()
     }
 }
 
+module m5_screw()
+{
+    rotate([0,180,0]) {
+        move([2,0,2]) screw(screwsize=5,screwlen=30,headsize=8,headlen=3,countersunk=false);
+    }
+}
+
+module m5_nut()
+{
+    move([-2,0,24]) metric_nut(size=5, hole=true);
+}
+
 module render_hook(in_place)
 {
     if (in_place) {
         move([50,0,129.5]) {
             rotate([0,23,0]) {
                 color("red") hook();
+                color("grey") m5_screw();
+                color("silver") m5_nut();
             }
         }
     } else {

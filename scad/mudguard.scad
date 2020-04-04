@@ -37,7 +37,7 @@ module mudguard()
         difference() {
             // Draw the mudguard
             move([-35 - 65,0,-45]) cyl(h=54, d=diam, chamfer = 10);
-            move([-35 - 65,0,-45]) cyl(h=55, d=diam - 7, chamfer = 10);
+            move([-35 - 65,0,-45]) cyl(h=55, d=diam - 3, chamfer = 10);
             move([-35 - 65,-58,-45]) cuboid([diam + 10,188,60]);
 
             move([-79,62,-45]) {

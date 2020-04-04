@@ -171,11 +171,14 @@ module rack_frame_left()
 
         // M3 Inserts for attachment posts
         move([-83,58,151]) m3insert();
-        move([75,58,151]) m3insert();    
-    }
+        move([75,58,151]) m3insert();
 
-     
-    
+        // M3 Inserts for accessories
+        rotate([0,180,0]) {
+            move([-66 + 5,56.5,16]) m3insert();
+            move([-23 + 5,56.5,16]) m3insert();
+        }
+    }
 }
 
 module rack_frame_right()
