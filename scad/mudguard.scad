@@ -29,29 +29,52 @@ use <BOSL/transforms.scad>
 // Note: The position of the mudguard is approximate in the model
 // needs to be more accurately measured...
 
-module handlebar_clip()
-{
-    // Centre on the Wheel shaft
-    move([70 - 120,60,-52]) {
-        move([-34,3,0]) rotate([0,0,-25]) {
-            difference() {
-                rotate([90,0,0]) slot([0,0,-80], [24-17,0,-80], d1=17, d2=17, h=12);
-                move([9,77,0]) cuboid([14,7,20]);
-            }
-            rotate([90,0,0]) slot([0,0,-72.5], [24-17,0,-72.5], d1=17, d2=21, h=3);
-        }
-    }
-}
-
 module mudguard()
 {
     // Centre on the Wheel shaft
     move([0,0,-7]) {
         diam = 274;
         difference() {
+            // Draw the mudguard
             move([-35 - 65,0,-45]) cyl(h=54, d=diam, chamfer = 10);
-            move([-35 - 65,0,-45]) cyl(h=55, d=diam - 4, chamfer = 10);
+            move([-35 - 65,0,-45]) cyl(h=55, d=diam - 7, chamfer = 10);
             move([-35 - 65,-58,-45]) cuboid([diam + 10,188,60]);
+
+            move([-79,62,-45]) {
+                rotate([90,0,-23]) {
+                    move([0,0,-72.5]) {
+                        union() {
+                            move([-1.5,0,2]) {
+                                slot([0,-4.5,0], [0,-4.5 + 9,0], d1=3, d2=3, h=8);
+                                cyl(h=8, d=5);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        move([-79,62,-45]) {
+            rotate([90,0,-23]) {
+                move([0,0,-72.5]) {
+                    difference() {
+                        union() {
+                            slot([0,0,0], [24-17,0,0], d1=19, d2=24, h=4);
+                            slot([0,0,3], [24-17,0,3], d1=24, d2=24, h=2);
+                        }
+
+                        difference() {
+                            move([0,0,-1]) slot([0,0,0], [7,0,0], d1=15, d2=15, h=3);
+                            move([11,0,-1]) cuboid([15,17,4]);
+                        }
+
+                        move([-1.5,0,2]) {
+                            slot([0,-4.5,0], [0,-4.5 + 9,0], d1=3, d2=3, h=5);
+                            cyl(h=5, d=5);
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -60,6 +83,5 @@ module render_mudguard()
 {
     rotate([90,0,0]) move([100, 0,104 / 2]) {
         color("green") mudguard();
-        color("cyan") handlebar_clip();
     }
 }

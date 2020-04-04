@@ -32,9 +32,13 @@ include <top_bracket.scad>
 include <mudguard.scad>
 include <rack.scad>
 include <m3insert.scad>
+include <hook.scad>
 
 // Rendering quality
 $fn = 50;
+
+// Printable positions or display
+position = "Display"; // [Display, Printable]
 
 // Render the frame?
 show_frame = "Yes"; // [Yes, No]
@@ -44,6 +48,9 @@ show_mudguard = "Yes"; // [Yes, No]
 
 // Render the mudguard bracket?
 show_top_bracket = "Yes"; // [Yes, No]
+
+// Render the hook?
+show_hook = "Yes"; // [Yes, No]
 
 // Render the rack surface?
 show_rack_surface = "Yes"; // [Yes, No]
@@ -59,6 +66,9 @@ rotate([0,0,0]) {
     if (show_frame == "Yes") render_rear_frame();
     if (show_mudguard == "Yes") render_mudguard();
     if (show_top_bracket == "Yes") render_top_bracket();
+
+    hip = (position == "Display") ? true:false;
+    if (show_hook == "Yes") render_hook(hip);
 
     srs = (show_rack_surface == "Yes") ? true:false;
     srl = (show_rack_left == "Yes") ? true:false;
