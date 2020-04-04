@@ -76,108 +76,111 @@ module render_brake_caliper()
     }
 }
 
-module render_rear_frame()
+module render_rear_frame(render_for_display)
 {
-    rotate([90,0,0]) move([100,0,104 / 2]) {
-        color("darkred") {
-            // 50mm wide, 7mm thick - rendered section is 200mm long
-            // Side arms are 104mm outside to outside (104 - 14 = 90mm inside)
-            move([0,0,-3.5]) side_arm();
-            move([0,0,-7 - 3.5 - 90]) side_arm();
-        }
-
-        // Ramp triangles
-        color("darkred") {
-            move([2.5,25,-3.5]) rotate([-90,180,0]) right_triangle([20, 7, 10], center=false);
-            move([2.5,25,-3.5 - 97]) rotate([-90,180,0]) right_triangle([20, 7, 10], center=false);
-
-            move([18.5,30,-7.5]) cuboid([12,10,15], center=true);
-            move([18.5,30,-96.5]) cuboid([12,10,15], center=true);
-        }
-
-        // Wheel shaft
-        move([0,0,-7]) {
-            move([-35 - 65,0,-45]) cyl(h=104, d=12);
-
-            // Bolts
-            move([-35 - 65,0,-45 + 56])cyl(h=8.5, d=16, fillet2 = 3);
-            move([-35 - 65,0,-45 - 56])cyl(h=8.5, d=16, fillet1 = 3);
-
-            // Rear wheel 8.5 x 2"
-            color("purple") difference() {
-                move([-35 - 65,0,-45]) cyl(h=50.8, d=215.9, fillet = 20);
-                move([-35 - 65,0,-45]) cyl(h=55, d=150);
+    // Only display the rear frame when rendering for display
+    if (render_for_display) {
+        rotate([90,0,0]) move([100,0,104 / 2]) {
+            color("darkred") {
+                // 50mm wide, 7mm thick - rendered section is 200mm long
+                // Side arms are 104mm outside to outside (104 - 14 = 90mm inside)
+                move([0,0,-3.5]) side_arm();
+                move([0,0,-7 - 3.5 - 90]) side_arm();
             }
 
-            color("blue") {
-                // Inner hub
-                move([-35 - 65,0,-45]) cyl(h=14, d=150);
+            // Ramp triangles
+            color("darkred") {
+                move([2.5,25,-3.5]) rotate([-90,180,0]) right_triangle([20, 7, 10], center=false);
+                move([2.5,25,-3.5 - 97]) rotate([-90,180,0]) right_triangle([20, 7, 10], center=false);
 
-                // Left hub
-                move([-35 - 65,0,-45 - 30 + 6]) cyl(h=30, d=50);
-
-                // Right hub
-                move([-35 - 65,0,-45 + 30 - 6]) cyl(h=30, d=25);
+                move([18.5,30,-7.5]) cuboid([12,10,15], center=true);
+                move([18.5,30,-96.5]) cuboid([12,10,15], center=true);
             }
 
-            // Disc brake
-            color("green") move([-35 - 65,0,-45 - 45 + 1 + 4]) cyl(h=2, d=120);
-        }
+            // Wheel shaft
+            move([0,0,-7]) {
+                move([-35 - 65,0,-45]) cyl(h=104, d=12);
 
-        // Deck plate
-        difference() {
-            union() {
-                color("darkred") move([322.5,30,-104 /2]) {
-                    difference() {
-                        union() {
-                            move([-150/4 + 75 - 42,0,0]) cuboid([620 - 75 - 75 + 21,10,23 + 104 + 23]);
-                            move([235,0,0]) rotate([90,0,0]) cyl(h=10, r=150/2);
-                            move([-245,0,0]) rotate([90,0,0]) cyl(h=10, r=150/2);
+                // Bolts
+                move([-35 - 65,0,-45 + 56])cyl(h=8.5, d=16, fillet2 = 3);
+                move([-35 - 65,0,-45 - 56])cyl(h=8.5, d=16, fillet1 = 3);
+
+                // Rear wheel 8.5 x 2"
+                color("purple") difference() {
+                    move([-35 - 65,0,-45]) cyl(h=50.8, d=215.9, fillet = 20);
+                    move([-35 - 65,0,-45]) cyl(h=55, d=150);
+                }
+
+                color("blue") {
+                    // Inner hub
+                    move([-35 - 65,0,-45]) cyl(h=14, d=150);
+
+                    // Left hub
+                    move([-35 - 65,0,-45 - 30 + 6]) cyl(h=30, d=50);
+
+                    // Right hub
+                    move([-35 - 65,0,-45 + 30 - 6]) cyl(h=30, d=25);
+                }
+
+                // Disc brake
+                color("green") move([-35 - 65,0,-45 - 45 + 1 + 4]) cyl(h=2, d=120);
+            }
+
+            // Deck plate
+            difference() {
+                union() {
+                    color("darkred") move([322.5,30,-104 /2]) {
+                        difference() {
+                            union() {
+                                move([-150/4 + 75 - 42,0,0]) cuboid([620 - 75 - 75 + 21,10,23 + 104 + 23]);
+                                move([235,0,0]) rotate([90,0,0]) cyl(h=10, r=150/2);
+                                move([-245,0,0]) rotate([90,0,0]) cyl(h=10, r=150/2);
+                            }
+
+                            move([-330,-2,0]) cuboid([40,15,23 + 104 + 23]);
                         }
-
-                        move([-330,-2,0]) cuboid([40,15,23 + 104 + 23]);
                     }
+
+                    color("darkgray") {
+                        // Mud-guard screw holes
+                        move([57,     35.5,-52           ]) rotate([90,0,0]) cyl(h=1, d=9);
+                        move([57 - 21,35.5,-52 - (27 / 2)]) rotate([90,0,0]) cyl(h=1, d=9);
+                        move([57 - 21,35.5,-52 + (27 / 2)]) rotate([90,0,0]) cyl(h=1, d=9);
+                    }
+                }
+
+                // back of deck cut outs
+                color("darkred") {
+                    move([12 + (88 / 2)-41.5 - 0,28.5,-52]) cuboid([9,14,56]);
+                    move([12 + (88 / 2)-41.5 + 7,28.5,-52]) cuboid([9,14,24]);
                 }
 
                 color("darkgray") {
                     // Mud-guard screw holes
-                    move([57,     35.5,-52           ]) rotate([90,0,0]) cyl(h=1, d=9);
-                    move([57 - 21,35.5,-52 - (27 / 2)]) rotate([90,0,0]) cyl(h=1, d=9);
-                    move([57 - 21,35.5,-52 + (27 / 2)]) rotate([90,0,0]) cyl(h=1, d=9);
+                    move([57,     30.5,-52           ]) rotate([90,0,0]) cyl(h=12, d=4);
+                    move([57 - 21,30.5,-52 - (27 / 2)]) rotate([90,0,0]) cyl(h=12, d=4);
+                    move([57 - 21,30.5,-52 + (27 / 2)]) rotate([90,0,0]) cyl(h=12, d=4);
                 }
             }
 
-            // back of deck cut outs
-            color("darkred") {
-                move([12 + (88 / 2)-41.5 - 0,28.5,-52]) cuboid([9,14,56]);
-                move([12 + (88 / 2)-41.5 + 7,28.5,-52]) cuboid([9,14,24]);
-            }
+            // Deck rubber mat
+            color("grey") move([322.5,36.01,-104 /2]) {
+                difference() {
+                    union() {
+                        move([-150/4 + 75 - 42,0,0]) cuboid([620 - 75 - 75 + 21,2,150-10]);
+                        move([235,0,0]) rotate([90,0,0]) cyl(h=2, r=140/2);
+                        move([-245,0,0]) rotate([90,0,0]) cyl(h=2, r=140/2);
+                    }
 
-            color("darkgray") {
-                // Mud-guard screw holes
-                move([57,     30.5,-52           ]) rotate([90,0,0]) cyl(h=12, d=4);
-                move([57 - 21,30.5,-52 - (27 / 2)]) rotate([90,0,0]) cyl(h=12, d=4);
-                move([57 - 21,30.5,-52 + (27 / 2)]) rotate([90,0,0]) cyl(h=12, d=4);
-            }
-        }
+                    // Snip off the end part
+                    move([-329,0,0]) cuboid([40,4,23 + 104 + 23]);
 
-        // Deck rubber mat
-        color("grey") move([322.5,36.01,-104 /2]) {
-            difference() {
-                union() {
-                    move([-150/4 + 75 - 42,0,0]) cuboid([620 - 75 - 75 + 21,2,150-10]);
-                    move([235,0,0]) rotate([90,0,0]) cyl(h=2, r=140/2);
-                    move([-245,0,0]) rotate([90,0,0]) cyl(h=2, r=140/2);
+                    // Cut out for mudguard bracket
+                    move([-333,0,-54]) rotate([90,0,0]) slot([0,54,0], [54,54,0], d1=58, d2=58, h=4);   
                 }
-
-                // Snip off the end part
-                move([-329,0,0]) cuboid([40,4,23 + 104 + 23]);
-
-                // Cut out for mudguard bracket
-                move([-333,0,-54]) rotate([90,0,0]) slot([0,54,0], [54,54,0], d1=58, d2=58, h=4);   
             }
         }
+
+        render_brake_caliper();
     }
-
-    render_brake_caliper();
 }

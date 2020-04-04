@@ -33,6 +33,7 @@ include <mudguard.scad>
 include <rack.scad>
 include <m3insert.scad>
 include <hook.scad>
+include <disc_guard.scad>
 
 // Rendering quality
 $fn = 50;
@@ -61,17 +62,24 @@ show_rack_left = "Yes"; // [Yes, No]
 // Render the right rack frame?
 show_rack_right = "Yes"; // [Yes, No]
 
+// Render the disc guard?
+show_disc_guard = "Yes"; // [Yes, No]
+
 // Main rendering function
 rotate([0,0,0]) {
-    if (show_frame == "Yes") render_rear_frame();
-    if (show_mudguard == "Yes") render_mudguard();
-    if (show_top_bracket == "Yes") render_top_bracket();
+    // If true, render parts for display - if false, render for 3D printing
+    render_for_display = (position == "Display") ? true:false;
 
-    hip = (position == "Display") ? true:false;
-    if (show_hook == "Yes") render_hook(hip);
+    if (show_frame == "Yes") render_rear_frame(render_for_display);
+    if (show_mudguard == "Yes") render_mudguard(render_for_display);
+    if (show_top_bracket == "Yes") render_top_bracket(render_for_display);
+    if (show_hook == "Yes") render_hook(render_for_display);
+    if (show_disc_guard == "Yes") render_disc_guard(render_for_display);
 
     srs = (show_rack_surface == "Yes") ? true:false;
     srl = (show_rack_left == "Yes") ? true:false;
     srr = (show_rack_right == "Yes") ? true:false;
-    render_rack(srs, srl, srr);
+    render_rack(srs, srl, srr, render_for_display);
+
+    
 }

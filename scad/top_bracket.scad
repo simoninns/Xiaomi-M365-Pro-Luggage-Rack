@@ -86,8 +86,12 @@ module render_plug_holder()
     }
 }
 
-module render_top_bracket()
+module render_top_bracket(render_for_display)
 {
-    render_bracket_base();
-    render_plug_holder();
+    if (render_for_display) {
+        render_bracket_base();
+        render_plug_holder();
+    } else {
+        move([-140,0,-35]) render_bracket_base();
+    }
 }

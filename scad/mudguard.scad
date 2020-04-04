@@ -79,9 +79,12 @@ module mudguard()
     }
 }
 
-module render_mudguard()
+module render_mudguard(render_for_display)
 {
-    rotate([90,0,0]) move([100, 0,104 / 2]) {
-        color("green") mudguard();
+    // Only render the mudguard when displaying the model
+    if (render_for_display) {
+        rotate([90,0,0]) move([100, 0,104 / 2]) {
+            color("green") mudguard();
+        }
     }
 }

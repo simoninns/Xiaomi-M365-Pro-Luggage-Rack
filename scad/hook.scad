@@ -27,71 +27,85 @@ use <BOSL/shapes.scad>
 use <BOSL/metric_screws.scad>
 use <BOSL/transforms.scad>
 
-module hook()
+module hook_base()
 {
     difference() {
         union() {
-            move([-2,0,-1]) difference() {
-                slot([0,-4.5,0], [0,-4.5 + 9,0], d1=3, d2=3, h=2);
-                cyl(h=3, d=5);
+            difference() {
+                move([1,0,0.5]) slot([0,0,0], [7,0,0], d1=14, d2=14, h=1);
+                move([11.5,0,0.5]) cuboid([15,17,4]);
             }
 
             difference() {
-                move([0,0,0.5]) slot([0,0,0], [7,0,0], d1=15, d2=15, h=1);
-                move([11,0,0.5]) cuboid([15,17,4]);
-            }
-
-            move([0,0,3.5]) slot([0,0,0], [7,0,0], d1=15, d2=20, h=9);
-            move([0,0,10.5]) slot([0,0,0], [7,0,0], d1=20, d2=20, h=5);
-
-            difference() {
-                move([0,0,13.5 + 4]) slot([0,0,0], [7,0,0], d1=20, d2=15, h=9);
-                move([11,0,13.5 + 4]) cuboid([15,20,9+4]);
-            }
-
-            move([0,0,20.5 + 4]) slot([0,0,0], [7,0,0], d1=15, d2=15, h=5);
-            move([0,0,23.5 + 4]) slot([0,0,0], [7,0,0], d1=15, d2=13.5, h=1);
-        }
-
-        move([-2,0,14]) cyl(h=34, r=2.6);
-        move([-2,0,20 + 4]) metric_nut(size=5.3, hole=false);
-    }
-
-    difference() {
-        move([8.5,0,17.25 + 4]) rotate([180,0,0]) right_triangle([12, 18, 1.5], center=true);
-
-        move([0,0,13.5 + 4]) {
-            difference() {
-                slot([0,0,0], [7,0,0], d1=30, d2=25, h=9.1);
-                slot([0,0,0], [7,0,0], d1=20, d2=15, h=9.1);
+                move([0,0,-0.5]) slot([0,-2.5,0], [0,2.5,0], d1=3, d2=3, h=1);
             }
         }
+        move([0,0,-0.5]) cyl(h=5, d=5.2);
     }
 }
+
+module hook_top()
+{
+    p = 13; // z position
+    h = 4; // z height
+    move([-7,0,p]) slot([0,0,0], [14,0,0], d1=18, d2=18, h=h);
+
+    difference() {
+        move([-7,0,p+h+1]) slot([0,0,0], [14,0,0], d1=18, d2=16, h=6);
+        move([10,0,p+h+1.5]) cuboid([30,19,h+2]);
+    }
+
+    move([-7,0,p+9.5]) slot([0,0,0], [9,0,0], d1=16, d2=14, h=h - 1);
+}
+
+module hook_bot_middle()
+{
+    p = 2.5; // z position
+    h = 3; // z height
+    difference() {
+        move([-7,0,p]) slot([0,0,0], [14,0,0], d1=14, d2=18, h=h);
+        move([0,0,p - (h/2) + 0.1]) cyl(h=h*2, d=5.2);
+    }
+}
+
+module hook_top_middle()
+{
+    p = 7.5; // z position
+    h = 7; // z height
+    difference() {
+        move([-7,0,p]) slot([0,0,0], [14,0,0], d1=18, d2=18, h=h);
+        move([0,0,p+0.5]) cuboid([19,19,h+2]);
+    }
+}
+
+module hook()
+{
+    hook_base();
+    hook_bot_middle();
+    hook_top_middle();
+    hook_top();
+}
+
 
 module m5_screw()
 {
     rotate([0,180,0]) {
-        move([2,0,2]) screw(screwsize=5,screwlen=30,headsize=8,headlen=3,countersunk=false);
+        //move([0,0,2]) screw(screwsize=5,screwlen=10,headsize=10,headlen=4,countersunk=false);
+        move([0,0,-8]) metric_nut(size=5, hole=true);
     }
 }
 
-module m5_nut()
+module render_hook(render_for_display)
 {
-    move([-2,0,24]) metric_nut(size=5, hole=true);
-}
-
-module render_hook(in_place)
-{
-    if (in_place) {
-        move([50,0,129.5]) {
+    if (render_for_display) {
+        move([48.5,0,130]) {
             rotate([0,23,0]) {
                 color("red") hook();
                 color("grey") m5_screw();
-                color("silver") m5_nut();
             }
         }
     } else {
-        color("red") hook();
+        rotate([0,0,0]) move([0,0,0]) color("red") hook();
+        color("grey") m5_screw();
     }
 }

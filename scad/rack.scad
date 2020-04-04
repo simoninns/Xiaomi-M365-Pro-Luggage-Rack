@@ -231,11 +231,31 @@ module rack_frame_right()
     }  
 }
 
-module render_rack(show_surface, show_left, show_right)
+module render_rack(show_surface, show_left, show_right, render_for_display)
 {
     color("orange") {
-        if (show_left) rack_frame_left();
-        if (show_right) rack_frame_right();
-        if (show_surface) move([0,0,0]) rack_surface();
+        if (show_left) {
+            if (render_for_display) {
+                rack_frame_left();
+            } else {
+                rotate([90,0,0]) move([0,-52,0]) rack_frame_left();
+            }
+        }
+
+        if (show_right) {
+            if (render_for_display) {
+                rack_frame_right();
+            } else {
+                rotate([-90,0,0]) move([0,52,0]) rack_frame_right();
+            }
+        }
+        
+        if (show_surface) {
+            if (render_for_display) {
+                rack_surface();
+            } else {
+                move([0,0,-144]) rack_surface();
+            }
+        }
     }
 }
