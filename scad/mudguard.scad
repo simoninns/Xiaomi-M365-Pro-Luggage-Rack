@@ -32,7 +32,7 @@ use <BOSL/transforms.scad>
 module mudguard()
 {
     // Centre on the Wheel shaft
-    move([0,0,-7]) {
+    move([1.5,0,-7]) {
         diam = 274;
         difference() {
             // Draw the mudguard
@@ -41,10 +41,10 @@ module mudguard()
             move([-35 - 65,-58,-45]) cuboid([diam + 10,188,60]);
 
             move([-79,62,-45]) {
-                rotate([90,0,-23]) {
+                rotate([90,0,-20]) {
                     move([0,0,-72.5]) {
                         union() {
-                            move([-1.5,0,2]) {
+                            move([3.5,0,2]) {
                                 slot([0,-4.5,0], [0,-4.5 + 9,0], d1=3, d2=3, h=8);
                                 cyl(h=8, d=5);
                             }
@@ -54,9 +54,9 @@ module mudguard()
             }
         }
 
-        move([-79,62,-45]) {
-            rotate([90,0,-23]) {
-                move([0,0,-72.5]) {
+        move([-76,61.5,-45]) {
+            rotate([90,0,-20]) {
+                move([2,0,-72.5]) {
                     difference() {
                         union() {
                             slot([0,0,0], [24-17,0,0], d1=19, d2=24, h=4);

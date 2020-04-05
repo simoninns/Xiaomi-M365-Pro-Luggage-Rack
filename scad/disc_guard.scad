@@ -29,16 +29,18 @@ use <BOSL/transforms.scad>
 
 module render_disc_guard(render_for_display)
 {
-    move([0,50 - 9,0]) {
+    move([0,50 - 7,0]) {
         rotate([90,0,0]) {
             difference() {
-                cyl(l=22, d1=135, d2=150);
-                move([0,0,4]) cyl(l=23, d1=135 - 4, d2=150 - 4);
+                cyl(l=12, d1=135, d2=145);
+                move([0,0,4]) cyl(l=13, d1=135 - 4, d2=145 - 4);
                 
                 move([-44 + 92 + 65 - 65,0,0]) cuboid([100,60,30]);
-                move([0,0,0])cyl(h=30, d=60);   
+                move([0,0,0])cyl(h=30, d=60);  
+
+                move([0,52,0]) cuboid([150,70,30]); 
             }
-            //move([0,28,0]) cuboid([170,110,30]);
+            
         }
     }
 }
