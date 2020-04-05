@@ -34,6 +34,7 @@ include <rack.scad>
 include <m3insert.scad>
 include <hook.scad>
 include <disc_guard.scad>
+include <support_pins.scad>
 
 // Rendering quality
 $fn = 50;
@@ -62,6 +63,9 @@ show_rack_left = "Yes"; // [Yes, No]
 // Render the right rack frame?
 show_rack_right = "Yes"; // [Yes, No]
 
+// Render the support pins?
+show_support_pins = "Yes"; // [Yes, No]
+
 // Render the disc guard?
 show_disc_guard = "Yes"; // [Yes, No]
 
@@ -74,6 +78,7 @@ rotate([0,0,0]) {
     if (show_mudguard == "Yes") render_mudguard(render_for_display);
     if (show_top_bracket == "Yes") render_top_bracket(render_for_display);
     if (show_hook == "Yes") render_hook(render_for_display);
+    if (show_support_pins == "Yes") render_support_pins(render_for_display);
     if (show_disc_guard == "Yes") render_disc_guard(render_for_display);
 
     srs = (show_rack_surface == "Yes") ? true:false;
