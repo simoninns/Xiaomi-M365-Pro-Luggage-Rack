@@ -27,17 +27,17 @@ use <BOSL/shapes.scad>
 use <BOSL/transforms.scad>
 
 // Note: This part is load-bearing and should be printed
-// with 25% in-fill.  Use a brim and print up-right.
+// with 25% in-fill.  Use a 10mm brim and print up-right.
 
 // Note: Side cover hole is 4mm diameter and 6mm deep
 //       Frame is 7mm thick behind the cover
 module support_pin()
 {
     color("green") {
-        cyl(h = 6 + 7 + 1 - 2, d = 3.8);
+        cyl(h = 6 + 7 + 1 - 2, d = 3.9);
 
-        move([0,0,6.5]) cyl(h = 1, d1 = 3.8, d2 = 2.8);
-        move([0,0,-6.5]) cyl(h = 1, d1 = 2.8, d2 = 3.8);
+        move([0,0,6.5]) cyl(h = 1, d1 = 3.9, d2 = 2.9);
+        move([0,0,-6.5]) cyl(h = 1, d1 = 2.9, d2 = 3.9);
     }
 }
 

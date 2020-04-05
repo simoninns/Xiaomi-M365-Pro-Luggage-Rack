@@ -27,20 +27,58 @@ use <BOSL/shapes.scad>
 use <BOSL/metric_screws.scad>
 use <BOSL/transforms.scad>
 
-module render_disc_guard(render_for_display)
+module disc_guard()
 {
-    move([0,50 - 7,0]) {
+    depth = 26;
+
+    move([0,50 +12,0]) {
         rotate([90,0,0]) {
             difference() {
-                cyl(l=12, d1=135, d2=145);
-                move([0,0,4]) cyl(l=13, d1=135 - 4, d2=145 - 4);
+                move([0, 0 ,0 + (depth / 2) + 1]) cyl(l=depth, d1=143, d2=146);
+
+                move([0, 0 ,2.5 + (depth / 2) + 1]) cyl(l=depth + 1, d1=143 - 6, d2=146 - 6);
                 
-                move([-44 + 92 + 65 - 65,0,0]) cuboid([100,60,30]);
+                move([-44 + 92 + 65 - 65,0,0]) cuboid([100,60,100]);
                 move([0,0,0])cyl(h=30, d=60);  
 
-                move([0,52,0]) cuboid([150,70,30]); 
+                move([0,52,0 + (depth / 2)]) cuboid([200,94.5,depth * 2]);
+
+                // Rotational cut-out pattern
+                move([0,0,-9]) difference() {
+                    move([0, 0 ,0 + (depth / 2)]) cyl(l=8, d1=130, d2=130);
+                    move([0, 0 ,0 + (depth / 2)]) cyl(l=9, d1=75, d2=75);
+
+                    move([0, 0 ,0 + (depth / 2)]) rotate([0,0,-45]) cuboid([10,150,10]);
+                    move([0, 0 ,0 + (depth / 2)]) rotate([0,0,0]) cuboid([10,150,10]);
+                    move([0, 0 ,0 + (depth / 2)]) rotate([0,0,+45]) cuboid([10,150,10]);
+                    move([0, 0 ,0 + (depth / 2)]) rotate([0,0,+90]) cuboid([10,150,10]);
+                }
+
+                // Access for screwdriver
+                move([18,-53,6]) rotate([90,0,0]) cyl(h=60, d=5.2);
+                move([61,-53,6]) rotate([90,0,0]) cyl(h=60, d=5.2);
             }
             
+            // L bracket
+            difference() {
+                union() {
+                    move([30,-23,2]) cuboid([69.5,14,2]); 
+                    move([30,-17.5,6]) cuboid([69.5,3,8], chamfer = 1, edges=EDGE_BOT_BK); 
+                }
+
+                // Screw holes
+                move([18,-23,6]) rotate([90,0,0]) cyl(h=40, d=3);
+                move([61,-23,6]) rotate([90,0,0]) cyl(h=40, d=3);
+            }
         }
+    }
+}
+
+module render_disc_guard(render_for_display)
+{
+    if (render_for_display) {
+        color("red") disc_guard();
+    } else {
+        rotate([-90,0,0]) move([0,-61,0]) color("red") disc_guard();
     }
 }
