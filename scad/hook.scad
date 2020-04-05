@@ -27,6 +27,9 @@ use <BOSL/shapes.scad>
 use <BOSL/metric_screws.scad>
 use <BOSL/transforms.scad>
 
+// Note: This part is load-bearing and should be printed
+// on its side with 25% in-fill.
+
 // Render the base of the hook
 // (This is the attachment into the read mudguard)
 module hook_base()
@@ -128,6 +131,6 @@ module render_hook(render_for_display)
             }
         }
     } else {
-        rotate([0,0,0]) move([0,0,0]) color("red") hook();
+        rotate([90,0,0]) move([0,8,-10]) color("red") hook();
     }
 }
