@@ -12,6 +12,32 @@ The design requires a strong flexible plastic and is therefore suitable for fila
 
 <img src="/images/Photos/1_Rack_side.jpg" width="800">
 
+# Assembly instructions
+
+## Required hardware
+
+The following hardware is required for assembly (in addition to the 3D printed parts):
+
+* M5x16mm screw (used to secure the hook in place of the original M4x10mm screw)
+* M5 Nylon nut (you could use a standard nut, but be sure to thread-lock it)
+* M5 spring washer
+* M5 washer
+* 6x M3x0.5 threaded brass inserts
+* 4x M3x10 screws
+* Superglue
+* Red Reflective tape 20mm wide
+* Craft knife
+
+## Assembly
+
+Remove the mudguard and the original hook.  Place the new hook in the same place using the M5x16mm screw.  The order should be screw, spring washer, washer, mudguard then hook.  Note that the hook is designed so you can fit a 5mm spanner into the hook to tighten the nylon bolt.
+
+Remove the original side covers.  Glue 2 support pins into the centre holes of the rack stays.  Insert two M3 brass inserts into each stay using a hot iron (such as a soldering iron) - ensure the insert is straight and flush with the surface.  Superglue two support pins into each stay.  Affix the left and right rack stays using the original hex screws (use thread-lock).
+
+Press the rack surface onto the left and right stays (this should be easy to do and not require any force).  Screw into place using 4x M3x10 screws (use thread-lock).
+
+Apply the reflective tape to the sides of the rack (as shown in the pictures).  The main reflective location is designed to take the full 20mm wide tape.  For the stay struts you will need to carefully cut thin strips of tape and affix.
+
 # Printing instructions
 
 ## Overview
