@@ -18,7 +18,7 @@ The design requires a strong flexible plastic and is therefore suitable for fila
 
 The following hardware is required for assembly (in addition to the 3D printed parts):
 
-* M5x16mm screw (used to secure the hook in place of the original M4x10mm screw)
+* M5x16mm screw (used to secure the hook in place of the original M5x10mm screw)
 * M5 Nylon nut (you could use a standard nut, but be sure to thread-lock it)
 * M5 spring washer
 * M5 washer
@@ -35,6 +35,8 @@ Remove the mudguard and the original hook.  Place the new hook in the same place
 Remove the original side covers.  Glue 2 support pins into the centre holes of the rack stays.  Insert two M3 brass inserts into each stay using a hot iron (such as a soldering iron) - ensure the insert is straight and flush with the surface.  Superglue two support pins into each stay.  Affix the left and right rack stays using the original hex screws (use thread-lock).
 
 Press the rack surface onto the left and right stays (this should be easy to do and not require any force).  Screw into place using 4x M3x10 screws (use thread-lock).
+
+Note that the left stay has two addition slots for M3 brass inserts on the base of the stay.  These are for attaching additional accessories such as a disc cover.
 
 Apply the reflective tape to the sides of the rack (as shown in the pictures).  The main reflective location is designed to take the full 20mm wide tape.  For the stay struts you will need to carefully cut thin strips of tape and affix.
 
