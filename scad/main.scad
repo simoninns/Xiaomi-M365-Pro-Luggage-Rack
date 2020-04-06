@@ -35,6 +35,7 @@ include <m3insert.scad>
 include <hook.scad>
 include <disc_guard.scad>
 include <support_pins.scad>
+include <box_fastener.scad>
 
 // Rendering quality
 $fn = 50;
@@ -69,6 +70,9 @@ show_support_pins = "Yes"; // [Yes, No]
 // Render the disc guard?
 show_disc_guard = "Yes"; // [Yes, No]
 
+// Render the box fasteners?
+show_box_fasteners = "Yes"; // [Yes, No]
+
 // Main rendering function
 rotate([0,0,0]) {
     // If true, render parts for display - if false, render for 3D printing
@@ -80,6 +84,7 @@ rotate([0,0,0]) {
     if (show_hook == "Yes") render_hook(render_for_display);
     if (show_support_pins == "Yes") render_support_pins(render_for_display);
     if (show_disc_guard == "Yes") render_disc_guard(render_for_display);
+    if (show_box_fasteners == "Yes") render_box_fasteners(render_for_display);
 
     srs = (show_rack_surface == "Yes") ? true:false;
     srl = (show_rack_left == "Yes") ? true:false;
