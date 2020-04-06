@@ -28,34 +28,17 @@ use <BOSL/metric_screws.scad>
 use <BOSL/threading.scad>
 use <BOSL/transforms.scad>
 
-module fastener_base()
-{
-    difference() {
-        union() {
-            move([-2,36,-8.5]) cuboid([60 + 18,36,5]);
-            move([-2,32.75,-0.5]) cyl(h=11, d=28);
-        }
-
-        move([-2,33,0]) trapezoidal_threaded_rod(d=16, l=30, pitch=2, thread_angle=15, internal = true, $fn=32);
-    }
-
-    move([-26,32.75,-4.5]) cuboid([12,29.5,3]);
-    move([22,32.75,-4.5]) cuboid([12,29.5,3]);
-}
-
 module fastener_screw()
 {
-    move([0,0,-10]) { // -10
-        difference() {
-            union() {
-                move([-2,33,9.5]) trapezoidal_threaded_rod(d=16, l=30, pitch=2, thread_angle=15, $fn=32);
-                move([-2,33,23]) cyl(h=10, d=30);
+    move([0,0,-10]) {
+        union() {
+            // Make thread 15.75 to allow for printing tolerances
+            move([-2,33,9.5]) trapezoidal_threaded_rod(d=15.75, l=30, pitch=2, thread_angle=15, bevel=true, $fn=32);
+            move([-2,33,22.5]) cyl(h=9, d=26);
+            move([-2,33,27.5]) cyl(h=1, d1=26, d2=24);
 
-                move([-2,33,23]) rotate([0,0,0]) cuboid([8,60,10]);
-                move([-2,33,23]) rotate([0,0,90]) cuboid([8,60,10]);
-            }
-
-            move([-2,33,23 -6]) tube(h=12, id=60, od=65);
+            move([-2,33,23]) rotate([0,0,0]) cuboid([8,55,10], chamfer = 1);
+            move([-2,33,23]) rotate([0,0,90]) cuboid([8,55,10], chamfer = 1);
         }
     }
 }
@@ -64,19 +47,17 @@ module render_box_fasteners(render_for_display)
 {
     color("blue") {
         if (render_for_display) {
-            move([0,0,150]) fastener_base();
-            move([0,0,150]) fastener_screw();
-
-            rotate([0,0,180]) {
-                move([4,0,150]) fastener_base();
-                move([4,0,150]) fastener_screw();
+            move([2, -33, 5]) {
+                move([-98,0,150]) fastener_screw();
+                move([20,75,150]) fastener_screw();
+                move([20,-75,150]) fastener_screw();
             }
         } else {
-            move([0,-15,11]) fastener_base();
-            rotate([0,0,180]) move([4,-15,11]) fastener_base();
-
-            rotate([0,180,0]) move([85,0,-18]) fastener_screw();
-            rotate([0,180,0]) move([85,-66,-18]) fastener_screw();
+            rotate([0,180,0]) {
+                move([0,-66,-18]) fastener_screw();
+                move([0,0,-18]) fastener_screw();
+                move([18,-33,-18]) fastener_screw();
+            }
         }
     }
 }

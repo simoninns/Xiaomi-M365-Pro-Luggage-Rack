@@ -22,7 +22,7 @@ The following hardware is required for assembly (in addition to the 3D printed p
 * M5 Nylon nut (you could use a standard nut, but be sure to thread-lock it)
 * M5 spring washer
 * M5 washer
-* 6x M3x0.5 threaded brass inserts
+* 8x M3x0.5 threaded brass inserts
 * 4x M3x10 screws
 * Superglue
 * Red Reflective tape 20mm wide
@@ -36,9 +36,9 @@ Remove the original side covers.  Glue 2 support pins into the centre holes of t
 
 Press the rack surface onto the left and right stays (this should be easy to do and not require any force).  Screw into place using 4x M3x10 screws (use thread-lock).
 
-Note that the left stay has two addition slots for M3 brass inserts on the base of the stay.  These are for attaching additional accessories such as a disc cover.
+Note that the left stay and the rack surface have two addition slots each for M3 brass inserts (on the base of the stay, and under the rear of the surface).  These are for attaching additional accessories such as a disc guard.
 
-Apply the reflective tape to the sides of the rack (as shown in the pictures).  The main reflective location is designed to take the full 20mm wide tape.  For the stay struts you will need to carefully cut thin strips of tape and affix.
+Apply the reflective tape to the sides of the rack (as shown in the pictures).  The main reflective location is designed to take the full 20mm wide tape.  For the stay struts and the back of the rack surface you will need to carefully cut thin strips of tape and affix.
 
 # Printing instructions
 
@@ -56,8 +56,8 @@ The github repository for the model can be found at https://github.com/simoninns
 * Material: Prusament PETG (Prusa Jet Black)
 * Layer: 0.20mm (Quality)
 * Infill: 20%
-* Supports: Everywhere
-* Print time (approximate): 9h 55m
+* Supports: Support on build plate only
+* Print time (approximate): 10h 59m
 * Notes: None
 
 <img src="/images/Renders/surface.png" width="800">
@@ -105,6 +105,28 @@ The github repository for the model can be found at https://github.com/simoninns
 * Notes: To prevent the pins falling over during printing, turn on brim and set to 10mm.
 
 <img src="/images/Renders/support_pins.png" width="800">
+
+### Box fasteners
+* Number required: 1 (includes 3 fasteners per print)
+* Material: Prusament PETG (Prusa Orange)
+* Layer: 0.20mm (Quality)
+* Infill: 25%
+* Supports: None
+* Print time (approximate): 3h 4m
+* Notes: These are only required if you wish to affix a box to the rack surface.
+
+<img src="/images/Renders/box_fasteners.png" width="800">
+
+### Disc guard
+* Number required: 1
+* Material: Prusament PETG (Prusa Orange)
+* Layer: 0.20mm (Quality)
+* Infill: 15%
+* Supports: None
+* Print time (approximate): 2h 10m
+* Notes: This part is optional.
+
+<img src="/images/Renders/disc_guard.png" width="800">
 
 # Author
 

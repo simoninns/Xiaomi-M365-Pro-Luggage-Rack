@@ -90,6 +90,4 @@ rotate([0,0,0]) {
     srl = (show_rack_left == "Yes") ? true:false;
     srr = (show_rack_right == "Yes") ? true:false;
     render_rack(srs, srl, srr, render_for_display);
-
-    
 }

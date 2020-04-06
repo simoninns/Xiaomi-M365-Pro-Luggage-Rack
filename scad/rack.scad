@@ -24,6 +24,7 @@
 
 include <BOSL/constants.scad>
 use <BOSL/shapes.scad>
+use <BOSL/threading.scad>
 use <BOSL/transforms.scad>
 
 include <side_cover.scad>
@@ -48,6 +49,14 @@ module rack_surface_attachment_sockets(surface_height)
         move([+75,58,surface_height + 5]) cyl(h=4, d=6.2);
         move([-83,-58,surface_height + 5]) cyl(h=4, d=6.2);
         move([+45,-58,surface_height + 5]) cyl(h=4, d=6.2);
+}
+
+module rack_box_fastener()
+{
+    difference() {
+        move([0,0,0]) cyl(h=12, d=28);
+        move([0,0,0]) trapezoidal_threaded_rod(d=16, l=30, pitch=2, thread_angle=15, internal = true, $fn=32);
+    }
 }
 
 module rack_surface()
@@ -117,7 +126,24 @@ module rack_surface()
             move([yoffset + 8,83 + 20,hi3 - 4]) cuboid([224 - 24,28 + chm,14], chamfer = chm / 2, trimcorners = false, edges = EDGE_BOT_FR); // Left drop
             move([yoffset -16,-83 - 20,hi3 - 4]) cuboid([176 - 24,28 + chm,14], chamfer = chm / 2, trimcorners = false, edges = EDGE_BOT_BK); // Right drop
         }
+
+        // Fastener thread cutouts
+        move([-98,0,148]) cyl(h=18, d=28);
+        move([20,75,148]) cyl(h=18, d=28);
+        move([20,-75,148]) cyl(h=18, d=28);
+
+        // Inset for refective strip
+        move([-116.5,0,149]) cuboid([4, 166, 8], chamfer = 1);
+
+        // M3 Inserts for rear accessory attachment
+        move([-110,28.5,144]) rotate([0,180,0]) m3insert();
+        move([-110,-28.5,144]) rotate([0,180,0]) m3insert();
     }
+
+    // Fastener threads
+    move([-98,0,150]) rack_box_fastener();
+    move([20,75,150]) rack_box_fastener();
+    move([20,-75,150]) rack_box_fastener();
 }
     
 module crossbar_deco()
