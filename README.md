@@ -10,7 +10,7 @@ The design includes a 3 part rack (left stay, right stay and rack surface) that 
 
 The design requires a strong flexible plastic and is therefore suitable for filaments such as PETG and ABS.  The design requires a printer with a 20x25cm print surface.
 
-<img src="/images/Photos/1_Rack_side.jpg" width="800">
+<img src="/images/Photos/Rack_mounted.jpg" width="800">
 
 # Assembly instructions
 
@@ -30,6 +30,8 @@ The following hardware is required for assembly (in addition to the 3D printed p
 
 ## Assembly
 
+### Basic mounting
+
 Remove the mudguard and the original hook.  Place the new hook in the same place using the M5x16mm screw.  The order should be screw, spring washer, washer, mudguard then hook.  Note that the hook is designed so you can fit a 5mm spanner into the hook to tighten the nylon bolt.
 
 Remove the original side covers.  Glue 2 support pins into the centre holes of the rack stays.  Insert two M3 brass inserts into each stay using a hot iron (such as a soldering iron) - ensure the insert is straight and flush with the surface.  Superglue two support pins into each stay.  Affix the left and right rack stays using the original hex screws (use thread-lock).
@@ -39,6 +41,14 @@ Press the rack surface onto the left and right stays (this should be easy to do 
 Note that the left stay and the rack surface have two addition slots each for M3 brass inserts (on the base of the stay, and under the rear of the surface).  These are for attaching additional accessories such as a disc guard.
 
 Apply the reflective tape to the sides of the rack (as shown in the pictures).  The main reflective location is designed to take the full 20mm wide tape.  For the stay struts and the back of the rack surface you will need to carefully cut thin strips of tape and affix.
+
+### Box fastener
+
+In order to easily carry larger objects it is useful to affix a 15L plastic box to the rack (cheap 15L plastic boxes with sealable lids can be sourced from many supermarkets and hardware stores).  To make this easy the rack has 3 threaded holes.  Print the 3 fasteners and drill holes in the 15L box to allow them to pass through.  Ensure the box is as central on the rack as possible.  Mount the 15L box using the 3 fasteners.  The 15L box can be easily removed when not required or if you need to fold the scooter for transport.
+
+### Disc guard
+
+The disc guard is designed to protect the disc brake rotor from impact damage as well as large stones etc.  To fit the disc guard use 2 M3x16 screws and attach to the left rack stay using the provided M3 fittings underneath the stay.
 
 # Printing instructions
 
@@ -113,7 +123,7 @@ The github repository for the model can be found at https://github.com/simoninns
 * Infill: 25%
 * Supports: None
 * Print time (approximate): 3h 4m
-* Notes: These are only required if you wish to affix a box to the rack surface.
+* Notes: These are only required if you wish to affix a box to the rack surface.  The fastener threads are 0.25mm smaller in diameter than the threads on the rack surface to allow for printing tolerance.  This is a pretty tight fit to begin with and you may need to insert and remove them several times to make the threads correctly mate.  If insertion into the rack is too tight, either scale the print slightly or alter the design files according to your 3D printer. Alternatively, lightly sand the fastener's thread until it fits correctly.
 
 <img src="/images/Renders/box_fasteners.png" width="800">
 
