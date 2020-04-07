@@ -55,7 +55,7 @@ module hook_bot_middle()
     h = 3; // z height
 
     difference() {
-        move([0.5,0,p]) cuboid([31,16,h], chamfer = 1, edges = EDGES_BOTTOM+EDGES_Z_ALL);
+        move([0.5,0,p]) cuboid([31,26,h], chamfer = 1, edges = EDGES_BOTTOM+EDGES_Z_ALL);
         move([0,0,p - (h/2) + 0.1]) cyl(h=h*2, d=5.2);
     }
 }
@@ -65,8 +65,8 @@ module hook_top_middle()
     p = 7.5; // z position
     h = 7; // z height
 
-    move([-12,0,p]) cuboid([6,16,h], chamfer = 1, edges = EDGES_Z_ALL);
-    move([+13,0,p]) cuboid([6,16,h], chamfer = 1, edges = EDGES_Z_ALL);
+    move([-12,0,p]) cuboid([6,26,h], chamfer = 1, edges = EDGES_Z_ALL);
+    move([+13,0,p]) cuboid([6,26,h], chamfer = 1, edges = EDGES_Z_ALL);
 }
 
 module hook_top()
@@ -75,7 +75,7 @@ module hook_top()
 
     union() {
         difference() {
-            move([0.5,0,p]) cuboid([31,16,4], chamfer = 1, edges = EDGE_FR_LF+EDGE_FR_RT+EDGE_BK_LF+EDGE_BK_RT+
+            move([0.5,0,p]) cuboid([31,26,4], chamfer = 1, edges = EDGE_FR_LF+EDGE_FR_RT+EDGE_BK_LF+EDGE_BK_RT+
                 EDGE_TOP_RT+EDGE_TOP_FR+EDGE_TOP_BK);
 
             move([0,0,p-2]) cyl(h=2, d=5.2);
@@ -84,6 +84,17 @@ module hook_top()
         move([-10,0,p + 5]) cuboid([10,16,8], chamfer = 1, edges = EDGES_Z_ALL);
         move([-4.5,0,p + 10.5]) cuboid([21,16,5], chamfer = 1, edges = EDGES_ALL);
     }
+}
+
+module hook_rack_support()
+{
+    rotate([0,-20,0]) {
+        move([-22,0,10]) cuboid([25,22,8], chamfer = 1, edges = EDGES_ALL);
+        move([-30,0,10]) cuboid([12,16 + 24,8], chamfer = 1, edges = EDGES_ALL);
+        move([-30,13,17]) cuboid([12,14,14], chamfer = 1, edges = EDGES_ALL);
+        move([-30,-13,17]) cuboid([12,14,14], chamfer = 1, edges = EDGES_ALL);
+    }
+
 }
 
 module hook()
@@ -96,6 +107,8 @@ module hook()
                 hook_bot_middle();
                 hook_top_middle();
                 hook_top();
+
+                hook_rack_support();
             }
 
             // Flatten the top of the hook in line with the rack surface
