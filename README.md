@@ -38,11 +38,11 @@ Remove the mudguard and the original hook.  Place the new hook in the same place
 
 Remove the original side covers.  Glue 2 support pins into the centre holes of the rack stays.  Insert two M3 brass inserts into each stay using a hot iron (such as a soldering iron) - ensure the insert is straight and flush with the surface.  Superglue two support pins into each stay.  Affix the left and right rack stays using the original hex screws (use thread-lock).
 
-Press the rack surface onto the left and right stays (this should be easy to do and not require any force).  Screw into place using 4x M3x10 screws (use thread-lock).
+Press the rack surface onto the left and right stays as well as down into the 'U' mount of the hook (this should be easy to do and not require any force).  Screw into place using 4x M3x10 screws (use thread-lock).
 
-Note that the left stay and the rack surface have two addition slots each for M3 brass inserts (on the base of the stay, and under the rear of the surface).  These are for attaching additional accessories such as a disc guard.
+Note that the left stay and the rack surface have two additional slots each for M3 brass inserts (on the base of the stay, and under the rear of the surface).  These are for attaching additional accessories such as a disc guard.
 
-Apply the reflective tape to the sides of the rack (as shown in the pictures).  The main reflective location is designed to take the full 20mm wide tape.  For the stay struts and the back of the rack surface you will need to carefully cut thin strips of tape and affix.
+Apply the reflective tape to the sides and back of the rack (as shown in the pictures).  The main reflective location is designed to take the full 20mm wide tape.  For the stay struts and the back of the rack surface you will need to carefully cut thin strips of tape and affix.
 
 ### Box fastener
 
@@ -102,8 +102,8 @@ The github repository for the model can be found at https://github.com/simoninns
 * Layer: 0.20mm (Quality)
 * Infill: 50%
 * Supports: Everywhere
-* Print time (approximate): 0h 49m
-* Notes: The hook should be printed on it's side to ensure the print layers are 90 degrees from the direction of force when lifting the scooter.
+* Print time (approximate): 2h 36m
+* Notes: The hook should be printed on it's side to ensure the print layers are 90 degrees from the direction of force when lifting the scooter.  This requires the use of supports 'everywhere' due to the shape.
 
 <img src="/images/Renders/hook.png" width="800">
 
