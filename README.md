@@ -12,7 +12,7 @@ The design requires a strong flexible plastic and is therefore suitable for fila
 
 Maximum safe weight on the rack is approximately 5Kgs
 
-<img src="/images/Photos/Rack_mounted.jpg" width="800">
+<img src="/images/Photos/complete_rack1.jpg" width="800">
 
 # Assembly instructions
 
@@ -47,6 +47,8 @@ Apply the reflective tape to the sides and back of the rack (as shown in the pic
 ### Box fastener
 
 In order to easily carry larger objects it is useful to affix a small plastic box to the rack (cheap plastic boxes with sealable lids can be sourced from many supermarkets and hardware stores).  To make this easy the rack has 3 threaded holes.  Print the 3 fasteners and drill holes in the box to allow them to pass through.  Ensure the box is as central on the rack as possible (without excessive overhang on the sides of the rack).  Mount the box using the 3 fasteners.  The box can be easily removed when not required or if you need to fold the scooter for transport.
+
+<img src="/images/Photos/14L_box_mounted.jpg" width="800">
 
 ### Disc guard
 
